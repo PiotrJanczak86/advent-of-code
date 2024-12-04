@@ -10,6 +10,7 @@ public class ListSort {
     public void getNumber() {
 
         int result = 0;
+        int similarity = 0;
         ClassLoader classLoader = ListSort.class.getClassLoader();
         URL resource = classLoader.getResource("1.1.txt");
         boolean isItFirst = true;
@@ -50,6 +51,20 @@ public class ListSort {
         System.out.println(secondList);
 
         System.out.println(result);
-    }
 
+        int number;
+        int count;
+        for (int i = 0; i < firstList.size(); i++) {
+            number = firstList.get(i);
+            count = 0;
+
+            for (int j = 0; j < firstList.size(); j++) {
+                if (secondList.get(j) == number) {
+                    count++;
+                }
+            }
+            similarity += number * count;
+        }
+        System.out.println(similarity);
+    }
 }
