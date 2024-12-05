@@ -35,35 +35,66 @@ public class AnalyzeList {
         return result;
     }
 
-    public boolean safeCheck(List<Integer> list) {
+    public Result safeCheck(List<Integer> list) {
         if (Objects.equals(list.get(0), list.get(1))) {
-            return false;
+            return new Result(false, 0);
         }
 
         if (list.get(0) < list.get(1)) {
             for (int i = 0; i < list.size() - 1; i++) {
-                    if (list.get(i) >= list.get(i + 1) || Math.abs(list.get(i) - list.get(i + 1)) > 3) {
-                        return false;
-                    }
+                if (list.get(i) >= list.get(i + 1) || Math.abs(list.get(i) - list.get(i + 1)) > 3) {
+                    return new Result(false, i);
+                }
             }
         }
 
         if (list.get(0) > list.get(1)) {
             for (int i = 0; i < list.size() - 1; i++) {
-                    if (list.get(i) <= list.get(i + 1) || Math.abs(list.get(i) - list.get(i + 1)) > 3) {
-                        return false;
-                    }
+                if (list.get(i) <= list.get(i + 1) || Math.abs(list.get(i) - list.get(i + 1)) > 3) {
+                    return new Result(false, i);
+                }
             }
         }
-        return true;
+        return new Result(true);
     }
 
-    public void countSafePart1(String fileName){
+    public void countSafePart1(String fileName) {
         int safeCounter = 0;
         List<List<Integer>> input = loadFile(fileName);
-        for (List<Integer> row : input){
-            if(safeCheck(row)) safeCounter++;
+        for (List<Integer> row : input) {
+            if (safeCheck(row).isSafe()) safeCounter++;
         }
         System.out.println("Part 1 safe entries: " + safeCounter);
+    }
+
+    public void countSafePart2(String fileName) {
+        int safeCounter = 0;
+
+        List<List<Integer>> input = loadFile(fileName);
+        for (List<Integer> row : input) {
+            Result result = safeCheck(row);
+            boolean removalPossible = true;
+            if (result.isSafe()) safeCounter++;
+            else {
+                ArrayList<Integer> clone = new ArrayList<>(row);
+                ArrayList<Integer> clone1 = new ArrayList<>(row);
+                clone.remove(result.getNumber());
+                clone1.remove(0);
+                row.remove(result.getNumber() + 1);
+                if (safeCheck(clone1).isSafe()) {
+                    safeCounter++;
+                    removalPossible = false;
+                }
+                if (safeCheck(clone).isSafe() && removalPossible) {
+                    safeCounter++;
+                    removalPossible = false;
+                }
+                if (safeCheck(row).isSafe() && removalPossible) {
+                    safeCounter++;
+                    removalPossible = false;
+                }
+            }
+        }
+        System.out.println("Part 2 safe entries: " + safeCounter);
     }
 }

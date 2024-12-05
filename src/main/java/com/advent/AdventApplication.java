@@ -4,6 +4,7 @@ import com.advent.dayTwo.AnalyzeList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class AdventApplication {
 
@@ -11,6 +12,7 @@ public class AdventApplication {
         SpringApplication.run(AdventApplication.class, args);
 
         AnalyzeList analyzeList = new AnalyzeList();
-        analyzeList.countSafePart1("day2.txt");
+        analyzeList.countSafePart2("day2.txt");
+
     }
 }
