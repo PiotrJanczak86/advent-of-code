@@ -1,6 +1,6 @@
 package com.advent;
 
-import com.advent.dayTwo.AnalyzeList;
+import com.advent.Day2.AnalyzeList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

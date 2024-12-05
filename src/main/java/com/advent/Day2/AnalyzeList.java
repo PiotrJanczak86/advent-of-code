@@ -1,4 +1,4 @@
-package com.advent.dayTwo;
+package com.advent.Day2;
 
 import java.io.File;
 import java.io.FileNotFoundException;

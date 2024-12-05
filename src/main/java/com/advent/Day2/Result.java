@@ -1,4 +1,4 @@
-package com.advent.dayTwo;
+package com.advent.Day2;
 
 class Result {
 
