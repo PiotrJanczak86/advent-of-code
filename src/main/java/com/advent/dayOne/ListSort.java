@@ -12,7 +12,7 @@ public class ListSort {
         int result = 0;
         int similarity = 0;
         ClassLoader classLoader = ListSort.class.getClassLoader();
-        URL resource = classLoader.getResource("1.1.txt");
+        URL resource = classLoader.getResource("day1.txt");
         boolean isItFirst = true;
         List<Integer> firstList = new ArrayList<>();
         List<Integer> secondList = new ArrayList<>();
