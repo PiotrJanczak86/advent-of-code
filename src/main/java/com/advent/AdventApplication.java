@@ -1,8 +1,7 @@
 package com.advent;
 
-import com.advent.Day2.AnalyzeList;
-import com.advent.Day3.FindRegex;
-import com.advent.Day4.FindPattern;
+import com.advent.Day5.FileProcessor;
+import com.advent.Day5.RulesChecker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,9 +12,9 @@ public class AdventApplication {
     public static void main(String[] args) {
         SpringApplication.run(AdventApplication.class, args);
 
-        FindPattern findPattern = new FindPattern();
-        findPattern.countCrossedMAS(findPattern.loadFile("day4.txt"));
-//        System.out.println(findPattern.loadFile("day4.txt"));
+        FileProcessor fileProcessor = new FileProcessor();
+        RulesChecker rulesChecker = new RulesChecker();
 
+        System.out.println(rulesChecker.checkPartTwo(fileProcessor.loadFile("day5.txt")));
     }
 }
