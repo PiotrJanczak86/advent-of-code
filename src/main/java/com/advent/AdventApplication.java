@@ -14,7 +14,8 @@ public class AdventApplication {
         SpringApplication.run(AdventApplication.class, args);
 
         FindPattern findPattern = new FindPattern();
-        System.out.println(findPattern.loadFile("day4.txt"));
+        findPattern.countXMAS(findPattern.loadFile("day4.txt"));
+//        System.out.println(findPattern.loadFile("day4.txt"));
 
     }
 }

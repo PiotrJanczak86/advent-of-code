@@ -21,12 +21,9 @@ public class FindPattern {
                 while (scanner.hasNextLine()) {
                     List<String> row = new ArrayList<>();
                     String line = scanner.nextLine();
-                    Scanner lineScanner = new Scanner(line);
-
-                    while (lineScanner.hasNext()) {
-                        row.add(lineScanner.next());
+                    for (int i = 0; i < line.length(); i++) {
+                        row.add(line.substring(i, i + 1));
                     }
-                    lineScanner.close();
                     result.add(row);
                 }
             } catch (FileNotFoundException e) {
@@ -36,11 +33,47 @@ public class FindPattern {
         return result;
     }
 
-    public void FindPattern(List<List<String>> list){
-        int count = 0;
-        for(int i =0; i< list.get(0).size(); i++){
+    public static List<List<String>> rotate90DegreesRight(List<List<String>> original) {
+        int rows = original.size();
+        int cols = original.get(0).size();
 
+        List<List<String>> rotated = new ArrayList<>();
+        for (int i = 0; i < cols; i++) {
+            rotated.add(new ArrayList<>());
         }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                rotated.get(j).add(0, original.get(i).get(j));
+            }
+        }
+        return rotated;
     }
 
+    public void countXMAS(List<List<String>> list) {
+        int count = 0;
+        for (int rotate = 0; rotate < 4; rotate++) {
+            if (rotate > 0) list = rotate90DegreesRight(list);
+
+                for (int i = 0; i < list.size(); i++) {
+                    for (int j = 0; j < list.get(0).size() - 3; j++) {
+                        if (list.get(i).get(j).equals("X") && list.get(i).get(j + 1).equals("M") && list.get(i).get(j + 2).equals("A") && list.get(i).get(j + 3).equals("S"))
+                            count++;
+//                        else if (list.get(i).get(j).equals("S") && list.get(i).get(j + 1).equals("A") && list.get(i).get(j + 2).equals("M") && list.get(i).get(j + 3).equals("X"))
+//                            count++;
+
+                        if (i < list.size() - 3) {
+                            if (list.get(i).get(j).equals("X") && list.get(i + 1).get(j + 1).equals("M") && list.get(i + 2).get(j + 2).equals("A") && list.get(i + 3).get(j + 3).equals("S"))
+                                count++;
+//                            else if (list.get(i).get(j).equals("S") && list.get(i + 1).get(j + 1).equals("A") && list.get(i + 2).get(j + 2).equals("M") && list.get(i + 3).get(j + 3).equals("X"))
+//                                count++;
+                        }
+                    }
+                }
+
+            System.out.println(list);
+        }
+
+        System.out.println(count);
+    }
 }
