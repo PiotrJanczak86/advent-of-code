@@ -14,7 +14,7 @@ public class AdventApplication {
         SpringApplication.run(AdventApplication.class, args);
 
         FindPattern findPattern = new FindPattern();
-        findPattern.countXMAS(findPattern.loadFile("day4.txt"));
+        findPattern.countCrossedMAS(findPattern.loadFile("day4.txt"));
 //        System.out.println(findPattern.loadFile("day4.txt"));
 
     }

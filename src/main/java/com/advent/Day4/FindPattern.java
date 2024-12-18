@@ -41,7 +41,6 @@ public class FindPattern {
         for (int i = 0; i < cols; i++) {
             rotated.add(new ArrayList<>());
         }
-
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 rotated.get(j).add(0, original.get(i).get(j));
@@ -54,26 +53,35 @@ public class FindPattern {
         int count = 0;
         for (int rotate = 0; rotate < 4; rotate++) {
             if (rotate > 0) list = rotate90DegreesRight(list);
-
-                for (int i = 0; i < list.size(); i++) {
-                    for (int j = 0; j < list.get(0).size() - 3; j++) {
-                        if (list.get(i).get(j).equals("X") && list.get(i).get(j + 1).equals("M") && list.get(i).get(j + 2).equals("A") && list.get(i).get(j + 3).equals("S"))
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = 0; j < list.get(0).size() - 3; j++) {
+                    if (list.get(i).get(j).equals("X") && list.get(i).get(j + 1).equals("M") && list.get(i).get(j + 2).equals("A") && list.get(i).get(j + 3).equals("S"))
+                        count++;
+                    if (i < list.size() - 3) {
+                        if (list.get(i).get(j).equals("X") && list.get(i + 1).get(j + 1).equals("M") && list.get(i + 2).get(j + 2).equals("A") && list.get(i + 3).get(j + 3).equals("S"))
                             count++;
-//                        else if (list.get(i).get(j).equals("S") && list.get(i).get(j + 1).equals("A") && list.get(i).get(j + 2).equals("M") && list.get(i).get(j + 3).equals("X"))
-//                            count++;
-
-                        if (i < list.size() - 3) {
-                            if (list.get(i).get(j).equals("X") && list.get(i + 1).get(j + 1).equals("M") && list.get(i + 2).get(j + 2).equals("A") && list.get(i + 3).get(j + 3).equals("S"))
-                                count++;
-//                            else if (list.get(i).get(j).equals("S") && list.get(i + 1).get(j + 1).equals("A") && list.get(i + 2).get(j + 2).equals("M") && list.get(i + 3).get(j + 3).equals("X"))
-//                                count++;
-                        }
                     }
                 }
-
+            }
             System.out.println(list);
         }
+        System.out.println(count);
+    }
 
+    public void countCrossedMAS(List<List<String>> list){
+        int count = 0;
+        for (int i=0;i<list.size()-2;i++){
+            for(int j=0;j<list.get(i).size()-2;j++){
+                if(list.get(i).get(j).equals("M") && list.get(i+1).get(j+1).equals("A") && list.get(i+2).get(j+2).equals("S") &&
+                        list.get(i+2).get(j).equals("M") && list.get(i).get(j+2).equals("S")) count++;
+                else if(list.get(i).get(j).equals("M") && list.get(i+1).get(j+1).equals("A") && list.get(i+2).get(j+2).equals("S") &&
+                        list.get(i+2).get(j).equals("S") && list.get(i).get(j+2).equals("M")) count++;
+                 else if(list.get(i).get(j).equals("S") && list.get(i+1).get(j+1).equals("A") && list.get(i+2).get(j+2).equals("M") &&
+                        list.get(i+2).get(j).equals("M") && list.get(i).get(j+2).equals("S")) count++;
+                 else if(list.get(i).get(j).equals("S") && list.get(i+1).get(j+1).equals("A") && list.get(i+2).get(j+2).equals("M") &&
+                        list.get(i+2).get(j).equals("S") && list.get(i).get(j+2).equals("M")) count++;
+            }
+        }
         System.out.println(count);
     }
 }
